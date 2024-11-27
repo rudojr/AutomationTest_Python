@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+import time
 
 class LoginPage:
     def __init__(self, driver):
@@ -20,4 +21,9 @@ class LoginPage:
     def click_button_login(self):
         btnDangKy = self.driver.find_element(*self.btnDangNhap)
         btnDangKy.click()
-        
+    
+    def login(self):
+        self.set_email("admin@gmail.com") 
+        self.set_password("admin123")
+        self.click_button_login()    
+        time.sleep(3)

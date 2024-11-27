@@ -14,6 +14,13 @@ class TestLogin(unittest.TestCase):
         self.driver = webdriver.Chrome()
         self.driver.get("http://localhost:3000/login") 
         self.driver.maximize_window()
+        
+    def test_elements_present_on_login_page(self):
+        login_page = LoginPage(self.driver)
+        self.assertTrue(self.driver.find_element(*login_page.txtEmail).is_displayed(), "Trường Email không hiển thị.")
+        self.assertTrue(self.driver.find_element(*login_page.txtPassword).is_displayed(), "Trường Mật khẩu không hiển thị.")
+        self.assertTrue(self.driver.find_element(*login_page.btnDangNhap).is_displayed(), "Nút Đăng nhập không hiển thị.")
+
     
     def test_missing_required_fields(self):
         login_page = LoginPage(self.driver)

@@ -22,6 +22,15 @@ class TestRegister(unittest.TestCase):
         self.driver = webdriver.Chrome()
         self.driver.get("http://localhost:3000/register") 
         self.driver.maximize_window()
+        
+    def test_elements_present_on_register_page(self):
+        register_page = RegisterPage(self.driver)
+        self.assertTrue(self.driver.find_element(*register_page.txtName).is_displayed(), "Tên input không hiển thị.")
+        self.assertTrue(self.driver.find_element(*register_page.txtEmail).is_displayed(), "Email input không hiển thị.")
+        self.assertTrue(self.driver.find_element(*register_page.txtPassword).is_displayed(), "Mật khẩu input không hiển thị.")
+        self.assertTrue(self.driver.find_element(*register_page.txtConfirmPassword).is_displayed(), "Xác nhận mật khẩu input không hiển thị.")
+        self.assertTrue(self.driver.find_element(*register_page.btnDangKy).is_displayed(), "Nút Đăng ký không hiển thị.")
+
 
     def test_missing_required_fields(self):
         register_page = RegisterPage(self.driver)
